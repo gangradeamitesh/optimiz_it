@@ -9,7 +9,7 @@ setup(
     author="Amitesh Gangrade",
     author_email="gangradeamitesh@gmail.com",
     description="A simple optimization library for machine learning",
-    long_description=A simple Optimization Library for Machine Learning Algorithms ,
+    long_description="A simple Optimization Library for Machine Learning Algorithms ",
     long_description_content_type="text/markdown",
     url="https://github.com/gangradeamitesh/optimiz_it.git",
     packages=find_packages(),
