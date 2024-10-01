@@ -1,6 +1,7 @@
 import numpy as np
 from .optimizer import Optimizier
 from .losses import mse_partial_gradient, mse_loss
+import random
 
 class CoordinateDescent(Optimizier):
     """
@@ -12,7 +13,7 @@ class CoordinateDescent(Optimizier):
         tolerance (float): The tolerance for stopping criteria.
     """
 
-    def __init__(self, learning_rate, iterations, tolerance) -> None:
+    def __init__(self, learning_rate, iterations, tolerance , method = None) -> None:
         """
         Initializes the CoordinateDescent optimizer.
 
@@ -22,6 +23,7 @@ class CoordinateDescent(Optimizier):
             tolerance (float): The tolerance for stopping criteria.
         """
         super().__init__(learning_rate, iterations, tolerance)
+        self.method = method
 
     def optimize(self, X, y, initial_weights=None):
         """
@@ -39,11 +41,22 @@ class CoordinateDescent(Optimizier):
         weights = initial_weights.copy()
 
         for i in range(self.iterations):
-            for j in range(n):
-                partial_j_gradient = mse_partial_gradient(X, y, weights, j)
-                weights[j] = weights[j] - self.learning_rate * partial_j_gradient
+            if self.method=="cyclic" or self.method == None:
+                for j in range(n):
+                    partial_j_gradient = mse_partial_gradient(X, y, weights, j)
+                    weights[j] -= self.learning_rate * partial_j_gradient
+
+            elif self.method=="random":
+                j = random.randint(0 , n-1)
+                partial_j_gradient = mse_partial_gradient(X , y ,weights , j)
+                weights[j] -= self.learning_rate * partial_j_gradient
+            
+            elif self.method=="greedy":
+                 gradients = np.array([mse_partial_gradient(X , y , weights , j) for j in range(n)])
+                 j_argmax = np.argmax(np.abs(gradients))
+                 weights[j_argmax] -= self.learning_rate * gradients[j_argmax]
 
             if i % 100 == 0:
-                print(f"Iteration : {i} , Loss : {mse_loss(y, X.dot(weights))} ")
+                    print(f"Iteration : {i} , Loss : {mse_loss(y, X.dot(weights))} ")
 
         return weights

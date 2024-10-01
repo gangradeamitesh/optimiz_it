@@ -15,7 +15,7 @@ class LinearRegression:
         optimizer_type (str): The type of optimizer to use.
     """
 
-    def __init__(self, learning_rate=0.01, iterations=1000, tolerance=1e-6, optimizer_type=None) -> None:
+    def __init__(self, learning_rate=0.01, iterations=1000, tolerance=1e-6, optimizer_type=None , method = None) -> None:
         """
         Initializes the LinearRegression model.
 
@@ -30,13 +30,15 @@ class LinearRegression:
         self.tolerance = tolerance
         self.weights = None
         self.optimizer_type = optimizer_type
+        self.method = method
         if optimizer_type is None:
             raise ValueError("optimizer_type is None!")
         self.optimizer = OptimizerFactory.get_optimizer(
             optimizer_type=optimizer_type,
             learning_rate=learning_rate,
             iterations=iterations,
-            tolerance=tolerance
+            tolerance=tolerance,
+            method = method
         )
         self.preprocessing = Preprocessing()
 

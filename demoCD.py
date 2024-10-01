@@ -25,7 +25,8 @@ print(X_test.shape)
 print(y_train.shape)
 print(y_test.shape)
 
-model = LinearRegression(learning_rate=0.000001 , iterations=100000 , tolerance=0.0000001 , optimizer_type="coordinate_descent")
+model = LinearRegression(learning_rate=0.00001 , iterations=1000000 , tolerance=0.0000001 , optimizer_type="coordinate_descent" , method="greedy")
+
 
 model.fit(X_train , y_train , scale=True)
 
