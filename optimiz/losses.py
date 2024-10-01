@@ -14,4 +14,4 @@ def mse_gradient(X , y_true , y_pred):
 
 def mse_partial_gradient(X , y , weights , j):
     m = len(y)
-    return (1/ m) * np.sum((X @ w - y) * X[: , j])
+    return (1/ m) * np.sum((X @ weights - y) * X[: , j])

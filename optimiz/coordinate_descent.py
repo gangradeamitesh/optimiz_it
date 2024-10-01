@@ -11,10 +11,16 @@ class CoordinateDescent(Optimizier):
 
         m , n = X.shape
 
+        weights = initial_weights.copy()
+
         for i in range(self.iterations):
             for j in range(n):
-                partial_j_gradient = mse_partial_gradient(X , y , initial_weights , j)
-                initial_weights[j] = initial_weights[j] -  self.learning_rate * partial_j_gradient
+                partial_j_gradient = mse_partial_gradient(X , y , weights , j)
+                weights[j] = weights[j] -  self.learning_rate * partial_j_gradient
 
-        return initial_weights
+            if i%100 == 0:
+                print(f"Iteration : {i} , Loss : {mse_loss(y , X.dot(weights))} ")
+
+        return weights
+    
     

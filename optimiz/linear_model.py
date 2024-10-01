@@ -1,22 +1,25 @@
 import numpy as np
 from .gradient_descent import GradientDescent
-from .utils import Preprocessing
+from .preprocessing import Preprocessing
 from .optimizer_factory import OptimizerFactory
 from .losses import mse_loss
 
 class LinearRegression:
 
-    def __init__(self, learning_rate = 0.01 , iterations = 1000 , tolerance = 1e-6 , optimizer_type) -> None:
+    def __init__(self, learning_rate = 0.01 , iterations = 1000 , tolerance = 1e-6 , optimizer_type = None) -> None:
         self.learning_rate = learning_rate
         self.iterations = iterations
         self.tolerance = tolerance
         self.weights = None
         self.optimizer_type = optimizer_type,
+        if optimizer_type is None:
+            error_msg = "optimizer_type is None!"
+            raise ValueError(error_msg)
         self.optimizer = OptimizerFactory.get_optimizer(
-            optimizer_type , 
-            learning_rate , 
-            iterations,
-            tolerance
+            optimizer_type=optimizer_type , 
+            learning_rate = learning_rate , 
+            iterations = iterations,
+            tolerance = tolerance
         )
         self.preprocessing = Preprocessing()
     
@@ -30,6 +33,7 @@ class LinearRegression:
         
 
         initial_weights = np.zeros(X_with_bias.shape[1])
+        print(self.optimizer.__class__)
 
         self.weights = self.optimizer.optimize(X_with_bias , y , initial_weights)
     

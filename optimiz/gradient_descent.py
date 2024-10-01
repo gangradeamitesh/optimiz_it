@@ -19,6 +19,7 @@ class GradientDescent(Optimizier):
             gradient = self._compute_gradient(X , y, weights)
             updated_weights = weights - self.learning_rate * gradient
             weights = updated_weights
+            
         
         return weights
     
@@ -31,6 +32,5 @@ class GradientDescent(Optimizier):
     def _compute_gradient(self, X , y , weights):
         m = len(y)
         predictions = X.dot(weights)
-
         gradient = (1/m) * X.T.dot(predictions - y)
         return gradient
