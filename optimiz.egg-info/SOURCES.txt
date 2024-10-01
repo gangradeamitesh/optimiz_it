@@ -1,10 +1,14 @@
 README.md
 setup.py
 optimiz/__init__.py
+optimiz/coordinate_descent.py
 optimiz/gradient_descent.py
 optimiz/linear_model.py
 optimiz/logger.py
+optimiz/losses.py
 optimiz/optimizer.py
+optimiz/optimizer_factory.py
+optimiz/preprocessing.py
 optimiz.egg-info/PKG-INFO
 optimiz.egg-info/SOURCES.txt
 optimiz.egg-info/dependency_links.txt
