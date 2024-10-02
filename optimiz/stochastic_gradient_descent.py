@@ -11,7 +11,7 @@ class StocasticGradientDescent(Optimizier):
         self.gradient_descent = GradientDescent(learning_rate=learning_rate, iterations=iterations , tolerance=tolerance)
         self.batch_size = batch_size
     
-    def optimize(self , X , y , initial_weights=None , batch_size = 1):
+    def optimize(self , X , y , initial_weights=None ):
         
         m, n = X.shape
         weights = initial_weights.copy()
@@ -23,9 +23,9 @@ class StocasticGradientDescent(Optimizier):
             X = X[idxs]
             y = y[idxs]
 
-            for j in range(0 , m , batch_size):
-                X_batch = X[j : j + batch_size]
-                y_batch = y[j : j + batch_size]
+            for j in range(0 , m , self.batch_size):
+                X_batch = X[j : j + self.batch_size]
+                y_batch = y[j : j +self. batch_size]
                 gradient = self.gradient_descent._compute_gradient(X_batch , y_batch , weights)
                 weights -= self.learning_rate * gradient
             if i % 100 == 0:

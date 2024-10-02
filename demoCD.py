@@ -25,7 +25,7 @@ print(X_test.shape)
 print(y_train.shape)
 print(y_test.shape)
 
-model = LinearRegression(learning_rate=0.000001 , iterations=10000 , tolerance=0.0000001 , optimizer_type="sgd" ,batch_size=1)
+model = LinearRegression(learning_rate=0.000001 , iterations=20000 , tolerance=0.0000001 , optimizer_type="sgd" ,batch_size=1)
 
 
 model.fit(X_train , y_train , scale=True)
