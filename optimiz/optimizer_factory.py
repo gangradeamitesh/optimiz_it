@@ -1,5 +1,6 @@
 from .gradient_descent import GradientDescent
 from .coordinate_descent import CoordinateDescent
+from .stochastic_gradient_descent import StocasticGradientDescent
 
 class OptimizerFactory:
     """
@@ -10,7 +11,7 @@ class OptimizerFactory:
     """
 
     @staticmethod
-    def get_optimizer(optimizer_type, **kwargs):
+    def get_optimizer(optimizer_type, learning_rate , iterations , tolerance , method , batch_size ):
         """
         Returns an optimizer instance based on the specified type.
 
@@ -22,6 +23,8 @@ class OptimizerFactory:
             Optimizier: An instance of the specified optimizer.
         """
         if optimizer_type == "gradient_descent":
-            return GradientDescent(**kwargs)
+            return GradientDescent(learning_rate= learning_rate , iterations= iterations, tolerance=tolerance)
         if optimizer_type == "coordinate_descent":
-            return CoordinateDescent(**kwargs)
+            return CoordinateDescent(learning_rate= learning_rate , iterations= iterations , method=method , tolerance=tolerance)
+        if optimizer_type == "sgd":
+            return StocasticGradientDescent(learning_rate=learning_rate , iterations=iterations , batch_size=batch_size ,tolerance=tolerance)

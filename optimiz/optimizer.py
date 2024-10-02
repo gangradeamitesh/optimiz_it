@@ -10,7 +10,7 @@ class Optimizier:
         tolerance (float): The tolerance for stopping criteria.
     """
 
-    def __init__(self, learning_rate, iterations, tolerance) -> None:
+    def __init__(self, learning_rate=None, iterations=None, tolerance=None) -> None:
         """
         Initializes the optimizer.
 
