@@ -1,7 +1,8 @@
 import numpy as np
 from .optimizer import Optimizier
-from .losses import mse_partial_gradient, mse_loss
+from .losses import mse_loss
 import random
+from .utils import mse_partial_gradient
 
 class CoordinateDescent(Optimizier):
     """

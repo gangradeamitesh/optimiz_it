@@ -3,12 +3,13 @@ import random
 import numpy as np
 from .gradient_descent import GradientDescent
 from .losses import mse_loss
+from .utils import _compute_gradient
 
 class StocasticGradientDescent(Optimizier):
 
     def __init__(self, learning_rate, iterations, tolerance , batch_size=1) -> None:
         super().__init__(learning_rate, iterations, tolerance)
-        self.gradient_descent = GradientDescent(learning_rate=learning_rate, iterations=iterations , tolerance=tolerance)
+        #self.gradient_descent = GradientDescent(learning_rate=learning_rate, iterations=iterations , tolerance=tolerance)
         self.batch_size = batch_size
     
     def optimize(self , X , y , initial_weights=None ):
@@ -26,7 +27,7 @@ class StocasticGradientDescent(Optimizier):
             for j in range(0 , m , self.batch_size):
                 X_batch = X[j : j + self.batch_size]
                 y_batch = y[j : j +self. batch_size]
-                gradient = self.gradient_descent._compute_gradient(X_batch , y_batch , weights)
+                gradient = _compute_gradient(X_batch , y_batch , weights)
                 weights -= self.learning_rate * gradient
             if i % 100 == 0:
                 print(f"Iteration : {i} , Loss : {mse_loss(y , X.dot(weights))}")

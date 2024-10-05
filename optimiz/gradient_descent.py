@@ -1,6 +1,7 @@
 from .optimizer import Optimizier
 import numpy as np
 from .logger import get_logger
+from .utils import _compute_gradient
 
 class GradientDescent(Optimizier):
     """
@@ -40,7 +41,7 @@ class GradientDescent(Optimizier):
         weights = initial_weights.copy()
 
         for i in range(self.iterations):
-            gradient = self._compute_gradient(X, y, weights)
+            gradient = _compute_gradient(X, y, weights)
             updated_weights = weights - self.learning_rate * gradient
             weights = updated_weights
 
@@ -62,19 +63,19 @@ class GradientDescent(Optimizier):
         predictions = X.dot(weights)
         return (1 / (2 * m)) * np.sum((predictions - y) ** 2)
 
-    def _compute_gradient(self, X, y, weights):
-        """
-        Computes the gradient for the given weights.
+    # def _compute_gradient(self, X, y, weights):
+    #     """
+    #     Computes the gradient for the given weights.
 
-        Args:
-            X (numpy.ndarray): The input feature matrix.
-            y (numpy.ndarray): The target values.
-            weights (numpy.ndarray): The current weights.
+    #     Args:
+    #         X (numpy.ndarray): The input feature matrix.
+    #         y (numpy.ndarray): The target values.
+    #         weights (numpy.ndarray): The current weights.
 
-        Returns:
-            numpy.ndarray: The computed gradient.
-        """
-        m = len(y)
-        predictions = X.dot(weights)
-        gradient = (1 / m) * X.T.dot(predictions - y)
-        return gradient
+    #     Returns:
+    #         numpy.ndarray: The computed gradient.
+    #     """
+    #     m = len(y)
+    #     predictions = X.dot(weights)
+    #     gradient = (1 / m) * X.T.dot(predictions - y)
+    #     return gradient
