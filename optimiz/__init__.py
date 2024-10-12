@@ -1,5 +1,3 @@
-"""
-This module initializes the optimiz package and imports necessary components.
-"""
 
-from .linear_model import LinearRegression
+from .linear_model import LinearModel
+from .newtons_method import NewtonMethod

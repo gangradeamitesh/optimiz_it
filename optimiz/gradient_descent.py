@@ -39,13 +39,18 @@ class GradientDescent(Optimizier):
         """
         m, n = X.shape
         weights = initial_weights.copy()
-
+        loss_history = []
         for i in range(self.iterations):
             gradient = _compute_gradient(X, y, weights)
             updated_weights = weights - self.learning_rate * gradient
             weights = updated_weights
+            loss = mse_loss(y , X.dot(weights))
+            if i % 100 == 0:
+                print(f"Iteration : {i} , Loss : {loss} ")
+            loss_history.append(loss)
 
-        return weights
+
+        return weights , loss_history
 
     def _compute_cost(self, X, y, weights):
         """

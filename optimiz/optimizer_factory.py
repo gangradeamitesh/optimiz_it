@@ -3,6 +3,7 @@ from .coordinate_descent import CoordinateDescent
 from .stochastic_gradient_descent import StocasticGradientDescent
 from .nesterov_accelerated_gradient_descent import NesterovAcceleratedGradientDescent
 from .proximal_gradient_descent import ProximalGradientDescent
+from .newtons_method import NewtonMethod
 
 class OptimizerFactory:
     """
@@ -34,3 +35,6 @@ class OptimizerFactory:
             return StocasticGradientDescent(learning_rate=learning_rate , iterations=iterations , batch_size=batch_size ,tolerance=tolerance)
         if optimizer_type=="graduent_descent" and method=="nestrov":
             return NesterovAcceleratedGradientDescent(learning_rate=learning_rate , iterations=iterations , tolerance=tolerance)
+        if optimizer_type=="newton":
+            return NewtonMethod(iterations=iterations , tolerance=tolerance)
+        

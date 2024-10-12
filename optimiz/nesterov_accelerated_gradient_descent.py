@@ -1,6 +1,7 @@
 from .optimizer import Optimizier
 from .utils import _compute_gradient , print_details
 import numpy as np
+from .utils import mse_loss
 
 """Ref : https://paperswithcode.com/method/nesterov-accelerated-gradient"""
 
@@ -14,6 +15,7 @@ class NesterovAcceleratedGradientDescent(Optimizier):
 
         weights = initial_weights.copy()
         v = np.zeros_like(weights)
+        loss_history = []
 
         for i in range(self.iterations):
 
@@ -24,7 +26,10 @@ class NesterovAcceleratedGradientDescent(Optimizier):
             v = self.beta * v - self.learning_rate * gradient
 
             weights += v
-            print_details(iterations= i , weights=weights , y=y , X=X)
 
+            loss = mse_loss(y , np.dot(X , weights))
+            loss_history.append(loss)
+
+            print_details(iterations= i , weights=weights , y=y , X=X)
             
-        return weights
+        return weights , loss_history

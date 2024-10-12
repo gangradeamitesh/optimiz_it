@@ -28,3 +28,5 @@ def mse_partial_gradient(X, y, weights, j):
 
 def print_details(iterations , weights , y ,X):
     print(f"Iteration : {iterations} , Loss : {mse_loss(y, X.dot(weights))} ")
+
+    

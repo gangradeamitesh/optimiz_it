@@ -4,7 +4,7 @@ from .preprocessing import Preprocessing
 from .optimizer_factory import OptimizerFactory
 from .losses import mse_loss
 
-class LinearRegression:
+class LinearModel:
     """
     Linear Regression model using various optimization algorithms.
 
@@ -59,9 +59,10 @@ class LinearRegression:
         X_with_bias = np.c_[np.ones((X.shape[0], 1)), X]
         if scale:
             X = self.preprocessing.scale(X)
-
         initial_weights = np.zeros(X_with_bias.shape[1])
-        self.weights = self.optimizer.optimize(X_with_bias, y, initial_weights)
+        
+        self.weights , loss_history = self.optimizer.optimize(X_with_bias, y, initial_weights)
+        return loss_history
 
     def predict(self, X):
         """
@@ -92,3 +93,4 @@ class LinearRegression:
         y_pred = self.predict(X)
         mse = mse_loss(y_true=y, y_pred=y_pred)
         return mse
+    

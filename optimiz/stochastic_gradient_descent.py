@@ -16,7 +16,7 @@ class StocasticGradientDescent(Optimizier):
         
         m, n = X.shape
         weights = initial_weights.copy()
-
+        loss_history = []
         for i in range(1 , self.iterations+1):
             idxs = np.arange(m)
             #shuffling the index
@@ -26,13 +26,15 @@ class StocasticGradientDescent(Optimizier):
 
             for j in range(0 , m , self.batch_size):
                 X_batch = X[j : j + self.batch_size]
-                y_batch = y[j : j +self. batch_size]
+                y_batch = y[j : j + self. batch_size]
                 gradient = _compute_gradient(X_batch , y_batch , weights)
                 weights -= self.learning_rate * gradient
+            loss = mse_loss(y ,np.dot(X , weights))
+            loss_history.append(loss)
             if i % 100 == 0:
                 print(f"Iteration : {i} , Loss : {mse_loss(y , X.dot(weights))}")
             
-        return weights
+        return weights , loss_history 
 
 
     

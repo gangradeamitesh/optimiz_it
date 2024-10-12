@@ -40,6 +40,7 @@ class CoordinateDescent(Optimizier):
         """
         m, n = X.shape
         weights = initial_weights.copy()
+        loss_history = []
 
         for i in range(self.iterations):
             if self.method=="cyclic" or self.method == None:
@@ -57,7 +58,10 @@ class CoordinateDescent(Optimizier):
                  j_argmax = np.argmax(np.abs(gradients))
                  weights[j_argmax] -= self.learning_rate * gradients[j_argmax]
 
-            if i % 100 == 0:
-                    print(f"Iteration : {i} , Loss : {mse_loss(y, X.dot(weights))} ")
+            loss = mse_loss(y , X.dot(weights))
+            loss_history.append(loss)
 
-        return weights
+            if i % 100 == 0:
+                    print(f"Iteration : {i} , Loss : {loss} ")
+
+        return weights , loss_history
