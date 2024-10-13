@@ -1,10 +1,10 @@
 import numpy as np
-from optimiz.linear_model import LinearRegression
-from optimiz.losses import mse_loss
-from sklearn.model_selection import train_test_split
-from optimiz_it.demos.boston_dataset import BostonHousingDataset
-import pandas as pd
 
+from sklearn.model_selection import train_test_split
+from boston_dataset import BostonHousingDataset
+import pandas as pd
+from optimiz.linear_model import LinearModel
+from losses import mse_loss
 
 boston_housing = BostonHousingDataset()
 boston_dataset = boston_housing.load_dataset()
