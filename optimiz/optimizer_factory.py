@@ -27,7 +27,7 @@ class OptimizerFactory:
         """
         if optimizer_type == "gradient_descent" and method == "proximal":
             return ProximalGradientDescent(learning_rate=learning_rate , iterations= iterations , tolerance=tolerance)
-        if optimizer_type == "gradient_descent":
+        if optimizer_type == "gradient_descent" and method == None:
             return GradientDescent(learning_rate= learning_rate , iterations= iterations, tolerance=tolerance)
         if optimizer_type == "coordinate_descent":
             return CoordinateDescent(learning_rate= learning_rate , iterations= iterations , method=method , tolerance=tolerance)

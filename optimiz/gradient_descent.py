@@ -2,6 +2,7 @@ from .optimizer import Optimizier
 import numpy as np
 from .logger import get_logger
 from .utils import _compute_gradient
+from losses import mse_loss
 
 class GradientDescent(Optimizier):
     """
