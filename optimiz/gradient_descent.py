@@ -2,7 +2,7 @@ from .optimizer import Optimizier
 import numpy as np
 from .logger import get_logger
 from .utils import _compute_gradient
-from losses import mse_loss
+#from losses import mse_loss
 
 class GradientDescent(Optimizier):
     """
@@ -45,7 +45,7 @@ class GradientDescent(Optimizier):
             gradient = _compute_gradient(X, y, weights)
             updated_weights = weights - self.learning_rate * gradient
             weights = updated_weights
-            loss = mse_loss(y , X.dot(weights))
+            loss = self.mse_loss(y , X.dot(weights))
             if i % 100 == 0:
                 print(f"Iteration : {i} , Loss : {loss} ")
             loss_history.append(loss)
@@ -68,6 +68,9 @@ class GradientDescent(Optimizier):
         m = len(y)
         predictions = X.dot(weights)
         return (1 / (2 * m)) * np.sum((predictions - y) ** 2)
+    def mse_loss(self , y_true, y_pred):
+        mse = (1 / 2) * np.mean((y_true - y_pred) ** 2)
+        return mse
 
     # def _compute_gradient(self, X, y, weights):
     #     """

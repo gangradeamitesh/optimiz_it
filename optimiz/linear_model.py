@@ -57,10 +57,17 @@ class LinearModel:
             None
         """
         X_with_bias = np.c_[np.ones((X.shape[0], 1)), X]
-        if scale:
-            X = self.preprocessing.scale(X)
         initial_weights = np.zeros(X_with_bias.shape[1])
-        
+        print("Shape before flattening : " , y.shape)
+        y = y.flatten()
+        print(X_with_bias.shape)
+        #X_with_bias = X_with_bias.flatten() cluprit 
+        print("X_with_bias after flattening:" , X_with_bias.shape)
+        print("Shape of y : " , y.shape)
+        if scale:
+            X = self.preprocessing.scale(X)        
+        #initial_weights = initial_weights.flatten()
+
         self.weights , loss_history = self.optimizer.optimize(X_with_bias, y, initial_weights)
         return loss_history
 

@@ -1,7 +1,14 @@
-from setuptools import setup, find_packages
+from setuptools import setup, find_packages , Extension
+from Cython.Build import cythonize
+import numpy as np
 
 with open("README.md", "r", encoding="utf-8") as fh:
     long_description = fh.read()
+
+
+extensions = [
+    Extension("optimiz.stochastic_gradient_descent", ["optimiz/stochastic_gradient_descent.pyx"]),
+]
 
 setup(
     name="optimiz",
@@ -23,4 +30,7 @@ setup(
         "numpy",
         "matplotlib",
     ],
+    ext_modules=cythonize(extensions),
+    include_dirs=[np.get_include()],
+    zip_safe = False
 )
