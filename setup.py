@@ -5,9 +5,14 @@ import numpy as np
 with open("README.md", "r", encoding="utf-8") as fh:
     long_description = fh.read()
 
+cython_files = [
+    "optimiz/stochastic_gradient_descent",
+    "optimiz/gradient_descent"
+]
 
 extensions = [
-    Extension("optimiz.stochastic_gradient_descent", ["optimiz/stochastic_gradient_descent.pyx"]),
+    #Extension("optimiz.stochastic_gradient_descent", ["optimiz/stochastic_gradient_descent.pyx"]),
+    Extension(name.replace("/" , ".") , [name+".pyx"]) for name in cython_files
 ]
 
 setup(
