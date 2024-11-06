@@ -1,6 +1,5 @@
 from .optimizer import Optimizier
 import numpy as np
-from .logger import get_logger
 from .utils import _compute_gradient
 #from losses import mse_loss
 
@@ -24,7 +23,6 @@ class GradientDescent(Optimizier):
             tolerance (float): The tolerance for stopping criteria.
         """
         super().__init__(learning_rate, iterations, tolerance)
-        self.logger = get_logger(self.__class__.__name__)
 
     def optimize(self, X, y, initial_weights=None):
         """

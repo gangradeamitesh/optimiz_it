@@ -31,7 +31,7 @@ print(y_test.shape)
 pr = cProfile.Profile()
 pr.enable()
 
-model = LinearModel(learning_rate=0.000001 , iterations=3000 , tolerance=0.0000001 , optimizer_type="sgd" , batch_size=8)
+model = LinearModel(learning_rate=0.000001 , iterations=3000 , tolerance=0.0000001 , optimizer_type="gradient_descent" )
 
 
 loss_history = model.fit(X_train , y_train , scale=True)
