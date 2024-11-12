@@ -14,7 +14,7 @@ class OptimizerFactory:
     """
 
     @staticmethod
-    def get_optimizer(optimizer_type, learning_rate , iterations , tolerance , method , batch_size ):
+    def get_optimizer(optimizer_type, learning_rate , iterations , tolerance , method , batch_size=None ):
         """
         Returns an optimizer instance based on the specified type.
 

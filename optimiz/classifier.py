@@ -1,9 +1,9 @@
 
-from base_classifier import BaseClassifier
-from optimizer_factory import OptimizerFactory
+from .base_classifier import BaseClassifier
+from .optimizer_factory import OptimizerFactory
 from .preprocessing import Preprocessing
 import numpy as np
-
+import torch
 
 
 class LinearClassifier(BaseClassifier):
@@ -25,7 +25,7 @@ class LinearClassifier(BaseClassifier):
             X = self.preprocessing.scale(X)
         X_with_bias = np.c_[np.ones((X.shape[0], 1)), X]
         initial_weights = np.zeros(X_with_bias.shape[1])
-        y = y.flatten()
+        
         
         self.weights , loss_history = self.optimizer.optimize(X_with_bias, y, initial_weights)
         return loss_history        
