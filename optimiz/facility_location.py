@@ -23,6 +23,7 @@ class FacilityLocation:
         #print("Calculating paiwise distance")
         pairwise = X_pairwise_distances.max() - X_pairwise_distances
         #print("Done calculating pairwise distance")
+        print(pairwise.ndim)
         return pairwise
     def calculate_gains(self):
         gains = np.zeros(self.n, dtype='float64')

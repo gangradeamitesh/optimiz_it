@@ -7,7 +7,8 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 cython_files = [
     "optimiz/stochastic_gradient_descent",
-    "optimiz/gradient_descent"
+    "optimiz/gradient_descent",
+    "optimiz/facility_location"
 ]
 
 extensions = [
