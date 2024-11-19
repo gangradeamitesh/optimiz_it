@@ -15,7 +15,7 @@ class FacilityLocation(BaseFunction):
         self.gains = gains
         self.current_values = current_values
         self.optimizer_type = optimizer_type
-        super().__init__(simi_matrix , gains, current_values, selected_indices)
+        super().__init__(simi_matrix , gains, current_values, selected_indices , self)
        
 
     

@@ -4,7 +4,7 @@ from optimiz.optimizer_factory import OptimizerFactory
 
 class BaseFunction:
 
-    def __init__(self , simi_matrix = None , selected_indices = None , gains = None , current_values = None , optimizer_type="naive_greedy" ) -> None:
+    def __init__(self , simi_matrix = None , selected_indices = None , gains = None , current_values = None , optimizer_type="naive_greedy"  , fucntion=None) -> None:
         self.simi_matrix = simi_matrix
         self.selected_indices = selected_indices
         self.gain = None

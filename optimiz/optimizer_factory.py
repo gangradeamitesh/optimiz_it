@@ -15,7 +15,7 @@ class OptimizerFactory:
     """
 
     @staticmethod
-    def get_optimizer(optimizer_type, learning_rate = None , iterations = None , tolerance =None, method = None, batch_size=None ):
+    def get_optimizer(optimizer_type, learning_rate = None , iterations = None , tolerance =None, method = None, batch_size=None , function=None):
         """
         Returns an optimizer instance based on the specified type.
 
@@ -39,4 +39,4 @@ class OptimizerFactory:
         if optimizer_type=="newton":
             return NewtonMethod(iterations=iterations , tolerance=tolerance)
         if optimizer_type == "naive_greedy":
-            return NaiveGreedy()
+            return NaiveGreedy(function=function)
