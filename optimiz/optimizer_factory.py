@@ -39,4 +39,4 @@ class OptimizerFactory:
         if optimizer_type=="newton":
             return NewtonMethod(iterations=iterations , tolerance=tolerance)
         if optimizer_type == "naive_greedy":
-            return NaiveGreedy(function=function)
+            return NaiveGreedy()
