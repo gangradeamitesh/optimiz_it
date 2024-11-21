@@ -15,5 +15,5 @@ X, y = make_classification(n_samples=10000, n_features=20, n_classes=2, random_s
 
 facilityLocation = FacilityLocation(X=X)
 #print(facilityLocation.idx)
-subset = facilityLocation.fit(subset_size=500)
+subset = facilityLocation.fit(subset_size=1000)
 print(subset)

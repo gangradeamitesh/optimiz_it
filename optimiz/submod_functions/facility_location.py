@@ -2,6 +2,8 @@ from .base_function import BaseFunction
 from optimiz import validator
 from sklearn.metrics import pairwise_distances
 import numpy as np
+from .gpu_opti import calculate_gain_facility
+
 
 class FacilityLocation(BaseFunction):
 
@@ -11,11 +13,10 @@ class FacilityLocation(BaseFunction):
         self.n = self.simi_matrix.shape[0]
         self.d = self.simi_matrix.shape[1]
         self.selected_indices = selected_indices if selected_indices is not None else set()
-        #self.optimizer_type = optimizer_type
-        self.gains = gains
+        #self.gains = gains
         self.current_values = current_values if current_values is not None else np.zeros(self.d, dtype='float64')
         self.optimizer_type = optimizer_type
-        super().__init__(gains= gains)
+        super().__init__()
         
 
     
@@ -29,20 +30,18 @@ class FacilityLocation(BaseFunction):
         return super().fit(subset_size)
     
     def calculate_gain(self):
-        print(self.n)
         gains = np.zeros(self.n , dtype = 'float64')
-        for i in range(self.n):
-            if i in self.selected_indices:
-                continue
-            print(gains[i].shape)
-            print(self.simi_matrix[i].shape)
-            print(self.current_values.shape)
-            #print("Max of simi and curr :  ", np.maximum(self.simi_matrix[i] , self.current_values))
-            gains[i] = np.maximum(self.simi_matrix[i] , self.current_values).sum()
-            print(gains[i])
-        
-        return gains
-    
+        # for i in range(self.n):
+        #     if i in self.selected_indices:
+        #         continue
+        #     gains[i] = np.maximum(self.simi_matrix[i] , self.current_values).sum()
+        # print("Gains---> " ,gains)
+        # print("Simi Matrix -->  " , self.simi_matrix)
+        # print("selected indices ->" , self.selected_indices)
+        # print("Current Values ->" , self.current_values)
+
+        return calculate_gain_facility(gains , self.simi_matrix ,self.n, np.array(list(self.selected_indices) , dtype="int64") , self.current_values)
+
     
     def compute_similarity_matrix(self):
         """Taking the pairwise maxtrix with euclidian distance"""

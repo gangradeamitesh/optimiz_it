@@ -21495,7 +21495,6 @@ static PyObject *__pyx_pf_7optimiz_17facility_location_16FacilityLocation_6selec
  *             self.selected_indices.add(best_idx)
  *             self.current_values = np.maximum(self.current_values , self.X_simi[best_idx])             # <<<<<<<<<<<<<<
  *         return self.selected_indices
- *     # def convert_mem_to_numpy(self , double[:] mem_view) -> np.ndarray:
  */
     __Pyx_GetModuleGlobalName(__pyx_t_6, __pyx_n_s_np); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 61, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
@@ -21541,8 +21540,6 @@ static PyObject *__pyx_pf_7optimiz_17facility_location_16FacilityLocation_6selec
  *             self.selected_indices.add(best_idx)
  *             self.current_values = np.maximum(self.current_values , self.X_simi[best_idx])
  *         return self.selected_indices             # <<<<<<<<<<<<<<
- *     # def convert_mem_to_numpy(self , double[:] mem_view) -> np.ndarray:
- * 
  */
   __Pyx_XDECREF(__pyx_r);
   __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_selected_indices); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 62, __pyx_L1_error)

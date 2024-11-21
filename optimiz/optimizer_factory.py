@@ -5,6 +5,7 @@ from .nesterov_accelerated_gradient_descent import NesterovAcceleratedGradientDe
 from .proximal_gradient_descent import ProximalGradientDescent
 from .newtons_method import NewtonMethod
 from .submod_optimizer.naive_greedy import NaiveGreedy
+#from .submod_optimizer.lazy_greedy import LazyGreedy
 
 class OptimizerFactory:
     """
@@ -40,3 +41,5 @@ class OptimizerFactory:
             return NewtonMethod(iterations=iterations , tolerance=tolerance)
         if optimizer_type == "naive_greedy":
             return NaiveGreedy()
+        # if optimizer_type == "lazy_greedy":
+        #     return La
