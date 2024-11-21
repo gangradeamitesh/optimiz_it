@@ -8,7 +8,8 @@ class NaiveGreedy(SubModOptimizer):
     def select(self, subset_size , function):
         for _ in range(subset_size):
             #print(function)
-            print("Calling Function Calculate Gain")
+
+            #print("Calling Function Calculate Gain")
             gains = function.calculate_gain()
             best_item = np.argmax(gains)
             function.selected_indices.add(best_item)
