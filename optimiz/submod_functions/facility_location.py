@@ -46,6 +46,6 @@ class FacilityLocation(BaseFunction):
     
     def compute_similarity_matrix(self):
         """Taking the pairwise maxtrix with euclidian distance"""
-        X_pairwise_distances = pairwise_distances(self.X , metric="euclidean" , squared=True)
+        X_pairwise_distances = pairwise_distances(self.X , metric="cosine")
         pairwise = X_pairwise_distances.max() - X_pairwise_distances
         return pairwise

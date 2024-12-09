@@ -13,27 +13,30 @@ from sklearn.linear_model import LogisticRegression
 
 from sklearn.datasets import make_classification
 from sklearn.model_selection import train_test_split
+from sklearn.datasets import make_blobs
+# X, y = make_classification(n_samples=1000, n_features=20, n_classes=2, random_state=42,)
+# X_train , X_test , y_train , y_test = train_test_split(X , y , test_size=0.2 , random_state=42)
 
-X, y = make_classification(n_samples=6000, n_features=20, n_classes=2, random_state=42,)
-X_train , X_test , y_train , y_test = train_test_split(X , y , test_size=0.2 , random_state=42)
+X , y = make_blobs(n_samples=10000 , centers=4 ,n_features=5, cluster_std=0.5 , random_state=42)
 
-start_time = time.time()
+print("X shape : " , X.shape)
+
 facilityLocation = FacilityLocation(X=X)
 #print(facilityLocation.idx)
-subset = facilityLocation.fit(subset_size=600)
-end_time = time.time()
+subset = facilityLocation.fit(subset_size=100)
+print("Length of Subset " , len(subset))
+print(subset)
 
-print(end_time - start_time)
+X_subset = X[list(subset)]
+plt.figure(figsize=(10,10))
+plt.scatter(X[: , 0] , X[:,1] , c = y , cmap="viridis" , s=50 , alpha=0.7)
+plt.scatter(X_subset[:,0] , X_subset[:,1] , color = 'red' , s = 100, label="Subset Data")
 
+plt.title("Visualization of Generated Blobs")
+plt.xlabel("Feature 1")
+plt.ylabel("Feature 2")
+plt.colorbar(label='Cluster Label')
+plt.grid()
+plt.show()
 
-start_time_2 = time.time()
-clf = LogisticRegression(random_state = 42)
-clf.fit(X , y)
-end_time_2 = time.time()
-print(end_time_2 - start_time_2)
-
-start_time_3 = time.time()
-clf_2 = LogisticRegression(random_state = 42)
-clf_2.fit(X[list(subset)] , y[list(subset)])
-end_time_3 = time.time()
-print(end_time_3 - start_time_3)
+#print(list(subset))
