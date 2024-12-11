@@ -23,14 +23,14 @@ X, y = make_classification(n_samples=10000, n_features=20, n_classes=2, random_s
 print("Size of X :" , X.shape)
 print("Size of y : " , y.shape)
 
-facilityLocation = FacilityLocation(X , y)
-#print(facilityLocation.idx)
-subset = facilityLocation.greedy_selection(subset_size=2000)
-print(len(subset))
+# facilityLocation = FacilityLocation(X , y)
+# #print(facilityLocation.idx)
+# subset = facilityLocation.greedy_selection(subset_size=2000)
+# print(len(subset))
 
 #split the dataset
 from sklearn.model_selection import train_test_split
-X_train, X_test, y_train, y_test = train_test_split(X[subset],y[subset],
+X_train, X_test, y_train, y_test = train_test_split(X,y,
                                                  test_size = 0.3,
                                                  random_state = 42)
 
