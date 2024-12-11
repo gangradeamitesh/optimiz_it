@@ -30,18 +30,18 @@ class FacilityLocation(BaseFunction):
         return super().fit(subset_size)
     
     def calculate_gain(self):
-        # gains = np.zeros(self.n , dtype = 'float64')
-        # for i in range(self.n):
-        #     if i in self.selected_indices:
-        #         continue
-        #     gains[i] = np.maximum(self.simi_matrix[i] , self.current_values).sum()
+        gains = np.zeros(self.n , dtype = 'float64')
+        for i in range(self.n):
+            if i in self.selected_indices:
+                continue
+            gains[i] = np.maximum(self.simi_matrix[i] , self.current_values).sum()
         
-        # # print("Gains---> " ,gains)
-        # # print("Simi Matrix -->  " , self.simi_matrix)
-        # # print("selected indices ->" , self.selected_indices)
-        # # print("Current Values ->" , self.current_values)
-        # return gains
-        return calculate_gain_facility(self.simi_matrix ,self.n, self.selected_indices , self.current_values)
+        # print("Gains---> " ,gains)
+        # print("Simi Matrix -->  " , self.simi_matrix)
+        # print("selected indices ->" , self.selected_indices)
+        # print("Current Values ->" , self.current_values)
+        return gains
+        #return calculate_gain_facility(self.simi_matrix ,self.n, self.selected_indices , self.current_values)
 
     
     def compute_similarity_matrix(self):

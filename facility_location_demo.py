@@ -23,7 +23,7 @@ print("X shape : " , X.shape)
 
 facilityLocation = FacilityLocation(X=X)
 #print(facilityLocation.idx)
-subset = facilityLocation.fit(subset_size=100)
+subset = facilityLocation.fit(subset_size=4)
 print("Length of Subset " , len(subset))
 print(subset)
 
