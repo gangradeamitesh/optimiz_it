@@ -14,16 +14,19 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.datasets import make_classification
 from sklearn.model_selection import train_test_split
 from sklearn.datasets import make_blobs
+from sklearn.preprocessing import StandardScaler
 # X, y = make_classification(n_samples=1000, n_features=20, n_classes=2, random_state=42,)
 # X_train , X_test , y_train , y_test = train_test_split(X , y , test_size=0.2 , random_state=42)
 
-X , y = make_blobs(n_samples=10000 , centers=4 ,n_features=5, cluster_std=0.5 , random_state=42)
+X , y = make_blobs(n_samples=10000 , centers=3 ,n_features=5, cluster_std=0.5 , random_state=42)
 
 print("X shape : " , X.shape)
+scaler = StandardScaler()
+X = scaler.fit_transform(X)
 
 facilityLocation = FacilityLocation(X=X)
 #print(facilityLocation.idx)
-subset = facilityLocation.fit(subset_size=4)
+subset = facilityLocation.fit(subset_size=3)
 print("Length of Subset " , len(subset))
 print(subset)
 
