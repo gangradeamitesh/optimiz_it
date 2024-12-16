@@ -1,7 +1,7 @@
 import numpy as np 
 from sklearn.datasets import make_blobs
 import matplotlib.pyplot as plt
-from optimiz.submod_functions.log_det import LogDeterminant
+from optimiz.submod_functions.graph_cut import GraphCut
 np.set_printoptions(suppress=True)
 
 
@@ -19,11 +19,13 @@ def visualize_subset(X , y , selected_indicees):
     plt.show()
 
 if __name__=="__main__":
-    X , y = generate_blob()
+    #X , y = generate_blob()
+    X = np.array([1, 2,3, 5, 6, 7]).reshape(-1, 1)
+    print("X :" , X)
     print("Shape of data X :" , X.shape)
-    logDet = LogDeterminant(X=X)
+    logDet = GraphCut(X=X)
     print("Similarity Matrix Shape", logDet.compute_similarity_matrix())
-    subset = logDet.fit(subset_size=10)
+    subset = logDet.fit(subset_size=3)
     print(subset)
     print('Subset Size : ' , len(subset))
-    visualize_subset(X , y , list(subset))
+    #visualize_subset(X , y , list(subset))

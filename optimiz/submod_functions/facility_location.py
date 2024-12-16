@@ -35,6 +35,8 @@ class FacilityLocation(BaseFunction):
             if i in self.selected_indices:
                 continue
             gains[i] = np.maximum(self.simi_matrix[i] , self.current_values).sum()
+
+        self.current_values = np.maximum(self.current_values , self.simi_matrix[np.argmax(gains)])
         
         # print("Gains---> " ,gains)
         # print("Simi Matrix -->  " , self.simi_matrix)
