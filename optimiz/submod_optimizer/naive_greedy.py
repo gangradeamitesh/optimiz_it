@@ -13,7 +13,9 @@ class NaiveGreedy(SubModOptimizer):
             gains = function.calculate_gain()
             print(gains)
             best_item = np.argmax(gains)
-            print(best_item)
             function.selected_indices.append(int(best_item))
+            self.current_value = function.gain(function.selected_indices)
+            print(best_item)
+
         #print(function.selected_indices)
         return function.selected_indices
