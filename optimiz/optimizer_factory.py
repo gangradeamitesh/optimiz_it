@@ -4,6 +4,8 @@ from .stochastic_gradient_descent import StocasticGradientDescent
 from .nesterov_accelerated_gradient_descent import NesterovAcceleratedGradientDescent
 from .proximal_gradient_descent import ProximalGradientDescent
 from .newtons_method import NewtonMethod
+from .submod_optimizer.naive_greedy import NaiveGreedy
+#from .submod_optimizer.lazy_greedy import LazyGreedy
 
 class OptimizerFactory:
     """
@@ -14,7 +16,7 @@ class OptimizerFactory:
     """
 
     @staticmethod
-    def get_optimizer(optimizer_type, learning_rate , iterations , tolerance , method , batch_size ):
+    def get_optimizer(optimizer_type, learning_rate = None , iterations = None , tolerance =None, method = None, batch_size=None , function=None):
         """
         Returns an optimizer instance based on the specified type.
 
@@ -37,4 +39,7 @@ class OptimizerFactory:
             return NesterovAcceleratedGradientDescent(learning_rate=learning_rate , iterations=iterations , tolerance=tolerance)
         if optimizer_type=="newton":
             return NewtonMethod(iterations=iterations , tolerance=tolerance)
-        
+        if optimizer_type == "naive_greedy":
+            return NaiveGreedy()
+        # if optimizer_type == "lazy_greedy":
+        #     return La

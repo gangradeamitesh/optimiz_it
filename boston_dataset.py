@@ -1,6 +1,8 @@
 import pandas as pd 
 import numpy as np
-
+import ssl
+ssl._create_default_https_context = ssl._create_unverified_context
+import torch
 class BostonHousingDataset:
     def __init__(self):
         self.url = "http://lib.stat.cmu.edu/datasets/boston"

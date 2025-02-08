@@ -1,4 +1,5 @@
 import numpy as np
+# from .optimizer import Optimizier
 from .optimizer import Optimizier
 
 class NewtonMethod(Optimizier):
@@ -14,7 +15,7 @@ class NewtonMethod(Optimizier):
             grad = self.gradient(X , y , weights)
             hess = self.hessian(X , weights)
 
-            weights -= np.dot(np.linalg.inv(hess) , grad)
+            weights -= np.linalg.solve(hess , grad)
             loss = self.loss_function(X , y , weights)
             loss_history.append(loss)
             # if (i+1)%1 == 0:
@@ -32,8 +33,6 @@ class NewtonMethod(Optimizier):
 
     def loss_function(self , X , y, weights):
         h = self.sigmoid(np.dot(X , weights))
-        #print(h)
-        print(h)
         return -np.sum(y * np.log(h) + (1-y)*np.log(1-h))
     
     def gradient(self, X , y , weights):
