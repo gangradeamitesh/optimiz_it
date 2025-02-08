@@ -5,7 +5,7 @@ from optimiz.submod_functions.graph_cut import GraphCut
 np.set_printoptions(suppress=True)
 
 
-def generate_blob(n_samples=10000 , n_features=2 , n_centers =5 , random_state=42):
+def generate_blob(n_samples=100 , n_features=2 , n_centers =5 , random_state=42):
 
     X , y = make_blobs(n_samples=n_samples ,centers=n_centers , n_features=n_features,cluster_std=0.5, random_state=42)
     return X , y
@@ -19,13 +19,10 @@ def visualize_subset(X , y , selected_indicees):
     plt.show()
 
 if __name__=="__main__":
-    #X , y = generate_blob()
-    X = np.array([1, 2,3, 5, 6, 7]).reshape(-1, 1)
-    print("X :" , X)
-    print("Shape of data X :" , X.shape)
+    X , y = generate_blob()
     logDet = GraphCut(X=X)
     print("Similarity Matrix Shape", logDet.compute_similarity_matrix())
-    subset = logDet.fit(subset_size=3)
+    subset = logDet.fit(subset_size=10)
     print(subset)
     print('Subset Size : ' , len(subset))
-    #visualize_subset(X , y , list(subset))
+    visualize_subset(X , y , subset)

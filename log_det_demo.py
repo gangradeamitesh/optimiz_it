@@ -5,7 +5,7 @@ from optimiz.submod_functions.log_det import LogDeterminant
 np.set_printoptions(suppress=True)
 
 
-def generate_blob(n_samples=10000 , n_features=2 , n_centers =5 , random_state=42):
+def generate_blob(n_samples=1000 , n_features=2 , n_centers =5 , random_state=42):
 
     X , y = make_blobs(n_samples=n_samples ,centers=n_centers , n_features=n_features,cluster_std=0.5, random_state=42)
     return X , y

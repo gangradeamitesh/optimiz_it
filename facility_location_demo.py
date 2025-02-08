@@ -2,12 +2,17 @@ import numpy as np
 from sklearn.datasets import make_blobs
 import matplotlib.pyplot as plt
 from optimiz.submod_functions.facility_location import FacilityLocation
+
 np.set_printoptions(suppress=True)
 
 
-def generate_blob(n_samples=10000 , n_features=2 , n_centers =5 , random_state=42):
-
-    X , y = make_blobs(n_samples=n_samples ,centers=n_centers , n_features=n_features,cluster_std=0.5, random_state=42)
+def generate_blob(n_samples=1000 , n_features=2 , n_centers =5 , random_state=42):
+    num_clusters = 10
+    cluster_std_dev = 4
+    X , y = make_blobs(n_samples=500, centers=num_clusters, 
+                                          n_features=2, cluster_std=cluster_std_dev, center_box=(0,100), 
+                                          return_centers=True, random_state=4)
+    # X , y = make_blobs(n_samples=n_samples ,centers=n_centers , n_features=n_features,cluster_std=0.5, random_state=42)
     return X , y
 
 def visualize_subset(X , y , selected_indicees):
@@ -19,17 +24,17 @@ def visualize_subset(X , y , selected_indicees):
     plt.show()
 
 if __name__=="__main__":
-    #X , y = generate_blob()
-    X = np.array([1, 2, 3, 5, 6, 7]).reshape(-1, 1)
+    X , y = generate_blob()
+    #X = np.array([1, 2, 3, 5, 6, 7]).reshape(-1, 1)
     print("X :" , X)
     print("Shape of data X :" , X.shape)
     facilityLoc = FacilityLocation(X=X)
     print("Similarity Matrix Shape", facilityLoc.compute_similarity_matrix())
-    subset = facilityLoc.fit(subset_size=3)
+    subset = facilityLoc.fit(subset_size=10)
     print(subset)
     print('Subset Size : ' , len(subset))
-    print(X[subset])
-    #visualize_subset(X , y , list(subset))
+    #print(X[subset])
+    visualize_subset(X , y , list(subset))
 
 
 

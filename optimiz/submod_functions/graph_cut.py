@@ -19,14 +19,15 @@ class GraphCut(BaseFunction):
         return super().fit(subset_size)
 
     def gain(self,subset):
-        print("Finding the gain for subset of indices:" , subset)
+        #print("Finding the gain for subset of indices:" , subset)
         """f_{gc}(X) = \\sum_{i \\in V, j \\in X} s_{ij} - \\lambda \\sum_{i, j \\in X} s_{ij}"""
 #        representation_term = np.sum(self.simi_matrix[:, j] for j in subset)
         representation_term = sum(self.simi_matrix[i, j] for i in self.ground_indices for j in subset)
-        representation_term = np.sum(self.simi_matrix[np.ix_(self.ground_indices, subset)])
+        #representation_term = np.sum(self.simi_matrix[np.ix_(self.ground_indices, subset)])
 
-        diversity_term = np.sum(self.simi_matrix[np.ix_(subset, subset)])
-        return representation_term - 0.5 * diversity_term
+        #diversity_term = np.sum(self.simi_matrix[np.ix_(subset, subset)])
+        diversity_term = sum(self.simi_matrix[i,j] for i in subset for j in subset)
+        return 0.5 * representation_term - 1 * diversity_term
 
     def calculate_gain(self):
         
@@ -35,12 +36,13 @@ class GraphCut(BaseFunction):
         for i in range(self.n):
             if i in self.selected_indices:
                 continue
-            gains[i] = self.gain(list(self.selected_indices) + [i]) - self.current_value
+            # gains[i] = self.gain(self.selected_indices + [i]) - self.current_value
+            gains[i] = self.gain(self.selected_indices + [i])
         #self.current_value = self.graph_cut(list(self.selected_indices) + [np.argmax(gains)])
         return gains
 
     def compute_similarity_matrix(self):
         """Taking the pairwise maxtrix with euclidian distance"""
         X_pairwise_distances = pairwise_distances(self.X , metric="euclidean")
-        pairwise = X_pairwise_distances.max() - X_pairwise_distances
+        pairwise = X_pairwise_distances.max() - X_pairwise_distances 
         return pairwise

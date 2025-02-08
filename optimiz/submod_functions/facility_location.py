@@ -42,7 +42,7 @@ class FacilityLocation(BaseFunction):
             if i in self.selected_indices:
                 continue
             gains[i] = self.gain(self.selected_indices+[i]) - self.current_values
-        return gains
+        return gains 
 
     
     def compute_similarity_matrix(self):
