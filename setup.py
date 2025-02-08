@@ -19,7 +19,7 @@ extensions = [
 
 setup(
     name="optimiz",
-    version="1.0.1",
+    version="1.0.2",
     author="Amitesh Gangrade",
     author_email="gangradeamitesh@gmail.com",
     description="A simple optimization library for machine learning",
